@@ -1,24 +1,33 @@
-// import David from "../assets/images/david.webp"; 
+// import David from "../assets/images/david.webp";
+interface ICardListLandingProps {
+  src: string;
+  name: string;
+  occupation: string;
+  text: string;
+}
 
-const CarouselCard = () => {
+const CarouselCard = ({
+  name,
+  occupation,
+  text,
+  src,
+}: ICardListLandingProps) => {
   return (
-    <div className="w-[300px] md:w-[500px] shadow-md p-8 rounded-[1.5rem]">
+    // <div className="w-[300px] md:w-[450px] shadow-md p-8 rounded-[1.5rem] bg-orange-200">
+    <div className="w-[250px] md:w-full shadow-md p-8 rounded-[1.5rem] bg-orange-200">
       <div className="flex items-center gap-4 mb-4">
-        <img src="../images/david.webp" alt="david k" className="h-[3rem] w-[3rem] object-cover rounded-full"/>
+        <img
+          src={src}
+          alt={`A picture if ${name}`}
+          className="h-[3rem] w-[3rem] object-cover rounded-full"
+        />
         <ul>
-            <li className="text-lg font-bold">David K</li>
-            <li className="text-lg text-teal-700">Sustainable Farmer</li>
+          <li className="text-lg font-bold">{name}</li>
+          <li className="text-lg text-teal-700">{occupation}</li>
         </ul>
       </div>
       <div className="card-body">
-        <p className="">
-          "The Smart Irrigation Dashboard has completely transformed the way we
-          manage water on our farm. The real-time monitoring and automated
-          scheduling have not only saved us time but also significantly reduced
-          our water usage. Our crops have never been healthier, and we’ve seen a
-          noticeable increase in yield. It’s a game-changer for sustainable
-          farming!"
-        </p>
+        <p className="italic">{`"${text}"`}</p>
       </div>
     </div>
   );
