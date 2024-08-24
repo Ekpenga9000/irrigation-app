@@ -1,7 +1,15 @@
+import Hero from "../components/Hero";
+import CardListLanding from "../components/CardListLanding";
+import AboutSection from "../components/AboutSection";
+import Testimonials from "../components/Testimonials";
+
 const Home = () => {
   return (
     <section>
-     <div></div>
+      <Hero />
+      <CardListLanding />
+      <AboutSection/>
+      <Testimonials/>
     </section>
   );
 };

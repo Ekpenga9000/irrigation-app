@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { PiPlantBold } from "react-icons/pi";
-import { RxDashboard } from "react-icons/rx";
+import { RxDashboard, RxHamburgerMenu } from "react-icons/rx";
 import { LuLogIn } from "react-icons/lu";
 import { TbLogout2 } from "react-icons/tb";
 
@@ -17,17 +17,38 @@ const Navbar = () => {
           </span>
         </Link>
 
-        <ul className="flex items-center gap-6">
+        <ul className="hidden md:flex items-center gap-6">
           <li>
-            <Link to="/dashboard" className="font-semibold text-lg flex items-center gap-1"><span><RxDashboard /></span>Dashboard</Link>
+            <Link
+              to="/dashboard"
+              className="font-semibold text-lg flex items-center gap-1">
+              <span>
+                <RxDashboard />
+              </span>
+              Dashboard
+            </Link>
           </li>
           <li>
-            <Link to="/login" className="font-semibold text-lg flex items-center gap-1"><LuLogIn />Login</Link>
+            <Link
+              to="/login"
+              className="font-semibold text-lg flex items-center gap-1">
+              <LuLogIn />
+              Login
+            </Link>
           </li>
           <li>
-            <Link to="/" className="font-semibold text-lg flex items-center gap-1"><TbLogout2 />Logout</Link>
+            <Link
+              to="/"
+              className="font-semibold text-lg flex items-center gap-1">
+              <TbLogout2 />
+              Logout
+            </Link>
           </li>
         </ul>
+
+        <div className="block md:hidden">
+          <RxHamburgerMenu />
+        </div>
       </nav>
     </header>
   );

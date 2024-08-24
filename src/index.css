@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.screen-padding{
+    @apply p-4 md:p-12 lg:p-24;
+}
