@@ -2,9 +2,10 @@ import DashboardCard1 from "@/components/DashboardCard1";
 import DashboardHead from "@/components/DashboardHead";
 import DashboardSprinklerCard from "@/components/DashboardSprinklerCard";
 import ScheduleIrrigationCard from "@/components/ScheduleIrrigationCard";
+import SensorOverviewComponent from "@/components/SensorOverviewComponent";
 import { BsWater } from "react-icons/bs";
 import { IoWaterOutline } from "react-icons/io5";
-// import TankLevels from "@/components/TankLevels";
+
 
 const Dashboard = () => {
   return (
@@ -30,7 +31,7 @@ const Dashboard = () => {
           <li><ScheduleIrrigationCard/></li>
         </ul>
         <ul className="border h-[35%] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          <li>Sensor Overview</li>
+          <li><SensorOverviewComponent/></li>
           <li>Weather forecast</li>
           <li>sprinklers</li>
         </ul>

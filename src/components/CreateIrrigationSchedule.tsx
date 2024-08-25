@@ -87,7 +87,18 @@ const CreateIrrigationSchedule = () => {
                 <TabsTrigger value="consumption">Consumption</TabsTrigger>
                 <TabsTrigger value="duration">Duration</TabsTrigger>
               </TabsList>
-              <TabsContent value="consumption"></TabsContent>
+              <TabsContent value="consumption">
+                <p className="mb-4">
+                  Stop irrigation based on liters of water consumed
+                </p>
+                <Label className="consumption-amount">Amount in ltrs</Label>
+                <input
+                  type="number"
+                  name="consumption-amount"
+                  id="consumption-amount"
+                  className="irrigation-input"
+                />
+              </TabsContent>
               <TabsContent value="duration">
                 <p className="my-2">Stop irrigation after the specified time</p>
                 <div className="mb-4">
@@ -99,32 +110,7 @@ const CreateIrrigationSchedule = () => {
                     className="irrigation-input"
                   />
                 </div>
-                <div className="flex items-center space-x-2 mb-4">
-                  <Switch
-                    id="repeat"
-                    onCheckedChange={() => setIsWeeklySchedule((prev) => !prev)}
-                    checked={isWeeklySchedule}
-                  />
-                  <Label htmlFor="repeat">Repeat weekly</Label>
-                </div>
-                <div>
-                  <Label>Repeats on</Label>
-                  <ul className="flex items-center justify-between gap-2 my-4">
-                    {isWeeklySchedule &&
-                      daysOfWeek.map((day) => (
-                        <li
-                          key={day}
-                          className={`cube ${
-                            weeklyScheduledDay.includes(day)
-                              ? "bg-orange-400 shadow-sm"
-                              : ""
-                          }`}
-                          onClick={() => handleWeeklyScheduledDay(day)}>
-                          {day.charAt(0)}
-                        </li>
-                      ))}
-                  </ul>
-                </div>
+
                 <div>
                   <Label htmlFor="end-date">End Date</Label>
                   <input
@@ -137,6 +123,33 @@ const CreateIrrigationSchedule = () => {
               </TabsContent>
             </Tabs>
           </div>
+          <div className="flex items-center space-x-2 mb-4">
+            <Switch
+              id="repeat"
+              onCheckedChange={() => setIsWeeklySchedule((prev) => !prev)}
+              checked={isWeeklySchedule}
+            />
+            <Label htmlFor="repeat">Repeat weekly</Label>
+          </div>
+          {isWeeklySchedule && (
+            <div>
+              <Label>Repeats on</Label>
+              <ul className="flex items-center justify-between gap-2 my-4">
+                {daysOfWeek.map((day) => (
+                  <li
+                    key={day}
+                    className={`cube ${
+                      weeklyScheduledDay.includes(day)
+                        ? "bg-orange-400 shadow-sm"
+                        : ""
+                    }`}
+                    onClick={() => handleWeeklyScheduledDay(day)}>
+                    {day.charAt(0)}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
         <DialogFooter>
           <button className="bg-orange-400 py-2 px-4 rounded-md">Create</button>
