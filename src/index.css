@@ -72,3 +72,11 @@
 .screen-padding {
   @apply p-4 md:p-12 lg:p-24;
 }
+
+.irrigation-input{
+  @apply w-full p-2 border rounded-md; 
+}
+
+.cube{
+  @apply border-2 py-2 px-4 rounded-md cursor-pointer; 
+}
