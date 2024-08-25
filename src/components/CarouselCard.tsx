@@ -1,4 +1,3 @@
-// import David from "../assets/images/david.webp";
 interface ICardListLandingProps {
   src: string;
   name: string;
