@@ -6,9 +6,9 @@ interface ISensorOverviewCardProp {
 }
 const SensorOverviewCard = ({ data, text }: ISensorOverviewCardProp) => {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center mb-4">
       <Gauge
-        width={100}
+        width={120}
         height={100}
         value={data}
         startAngle={-100}

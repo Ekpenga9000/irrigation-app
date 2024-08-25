@@ -1,6 +1,7 @@
 import DashboardCard1 from "@/components/DashboardCard1";
 import DashboardHead from "@/components/DashboardHead";
 import DashboardSprinklerCard from "@/components/DashboardSprinklerCard";
+import ScheduleComponent from "@/components/ScheduleComponent";
 import ScheduleIrrigationCard from "@/components/ScheduleIrrigationCard";
 import SensorOverviewComponent from "@/components/SensorOverviewComponent";
 import { BsWater } from "react-icons/bs";
@@ -33,7 +34,7 @@ const Dashboard = () => {
         <ul className="border h-[35%] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           <li><SensorOverviewComponent/></li>
           <li>Weather forecast</li>
-          <li>sprinklers</li>
+          <li><ScheduleComponent/></li>
         </ul>
         <ul className="border h-[45%] grid grid-cols-1 md:grid-cols-2">
           <li>Land Img</li>
