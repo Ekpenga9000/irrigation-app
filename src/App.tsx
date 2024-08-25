@@ -5,10 +5,12 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
   return (
     <main>
+      <Toaster/>
       <BrowserRouter>
         <Navbar />
         <Routes>
