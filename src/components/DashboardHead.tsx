@@ -22,15 +22,11 @@ const fields = [
     value: "Corn field",
     label: "Corn field",
   },
-  {
-    value: "Rice Field",
-    label: "Rice Field",
-  },
 ];
 
 const DashboardHead = () => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState("Corn field");
   const today = formatDate();
   return (
     <ul className="flex items-center gap-4">

@@ -5,11 +5,13 @@ import { dateExtractor, filterDayOut } from "@/lib/utils";
 import WeatherInfo from "./WeatherInfo";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { IoLocationOutline } from "react-icons/io5";
+import { useDispatch } from "react-redux";
+import { updateWeather } from "@/reduxState/weatherSlice/weatherSlice";
 
-const API_KEY = "064e46ef54fe58c854a42b2615975636";
 const WeatherForest = () => {
+  const API_KEY = import.meta.env.VITE_API_KEY;
   const [weather, setWeather] = useState<any>([]);
-
+  const dispatch = useDispatch();
   const fetchWeatherData = async () => {
     try {
       const response = await axios.get(
@@ -17,6 +19,14 @@ const WeatherForest = () => {
       );
       const weatherData = filterDayOut(response.data.list);
       setWeather([...weatherData]);
+
+      dispatch(
+        updateWeather({
+          humidity: weatherData[0].info["main"].humidity,
+          windSpeed: weatherData[0].info["wind"].speed,
+          temperature: weatherData[0].info["main"].temp,
+        })
+      );
     } catch (error) {
       toast.error("Unable to fetch data.");
     }
