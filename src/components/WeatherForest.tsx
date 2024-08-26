@@ -29,17 +29,13 @@ const WeatherForest = () => {
 
   return (
     <div className="card">
-      <ul className="flex items-center gap-2">
+      <ul className="flex items-center gap-2 mb-4">
         <li className="text-orange-400 bg-gray-100 p-2 rounded-full">
-          <IoIosCloudOutline />
+          <IoLocationOutline />
         </li>
-        <li className="font-semibold">Weather Forecast</li>
+        <li className="font-semibold">Calgary - Weather Forecast</li>
       </ul>
 
-      <ul className="my-4 font-semibold flex items-center justify-center md:justify-start">
-        <li><IoLocationOutline /></li>
-        <li>Calgary</li>
-      </ul>
       <ul className="hidden md:grid grid-cols-5 text-xs font-semibold text-gray-600 border-b py-2">
         <li>Day</li>
         <li>Weather</li>
@@ -47,7 +43,7 @@ const WeatherForest = () => {
         <li>Humidity</li>
         <li>Wind speed</li>
       </ul>
-      <ScrollArea className="h-[220px]">
+      <ScrollArea className="h-[250px]">
         {weather.map(({ day, info }: any) => (
           <WeatherInfo
             key={day}

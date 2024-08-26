@@ -10,18 +10,38 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+
+import { IoAdd } from "react-icons/io5";
+import CreateIrrigationSchedule from "./CreateIrrigationSchedule";
 
 const ScheduleComponent = () => {
   return (
     <div className="card">
-      <ul className="flex items-center gap-2 mb-4">
-        <li className="text-orange-400 bg-gray-100 p-2 rounded-full">
-          <FiClock />
-        </li>
-        <li className="font-semibold">Irrigation Schedules</li>
-      </ul>
+      <div className="flex items-center justify-between mb-4">
+        <ul className="flex items-center gap-2">
+          <li className="text-orange-400 bg-gray-100 p-2 rounded-full">
+            <FiClock />
+          </li>
+          <li className="font-semibold">Irrigation Schedules</li>
+        </ul>
 
-      <ul className="hidden lg:grid grid-cols-7 text-xs font-semibold text-gray-600 py-2 border-b">
+        <div>
+          <Dialog>
+            <DialogTrigger asChild>
+              <button className="text-teal-900 text-sm flex items-center border-b border-teal-900">
+                <IoAdd />
+                Create
+              </button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px] px-4">
+              <CreateIrrigationSchedule />
+            </DialogContent>
+          </Dialog>
+        </div>
+      </div>
+
+      <ul className="hidden lg:grid grid-cols-7 text-xs font-semibold text-gray-600 py-2 border-b gap-2">
         <li>Start day</li>
         <li>Start time</li>
         <li>End rule</li>

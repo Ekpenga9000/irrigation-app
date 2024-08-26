@@ -19,7 +19,7 @@ const IrrigationTimeSlotComponent = ({
 }: IIrrigationTimeSlotComponentProps) => {
   return (
     <>
-      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 text-xs font-semibold items-center text-gray-600 py-3 border-b gap-4">
+      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 text-xs font-semibold items-center text-gray-600 py-3 border-b gap-4 lg:gap-2">
         <li className="text-gray-600">
           <span className="irrigation-title">Start day</span>
           <span>{date}</span>
