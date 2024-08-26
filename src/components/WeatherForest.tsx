@@ -16,10 +16,8 @@ const WeatherForest = () => {
         `https://api.openweathermap.org/data/2.5/forecast?q=${`calgary`}&units=metric&exclude=alerts,minutely&appid=${API_KEY}`
       );
       const weatherData = filterDayOut(response.data.list);
-      console.log("Weather ", weatherData);
       setWeather([...weatherData]);
     } catch (error) {
-      console.log(error);
       toast.error("Unable to fetch data.");
     }
   };
@@ -36,7 +34,7 @@ const WeatherForest = () => {
         </li>
         <li className="font-semibold">Weather Forecast</li>
       </ul>
-      <ul className="grid grid-cols-5 text-xs font-semibold text-gray-600 border-b py-2">
+      <ul className="hidden md:grid grid-cols-5 text-xs font-semibold text-gray-600 border-b py-2">
         <li>Day</li>
         <li>Weather</li>
         <li>Temp</li>

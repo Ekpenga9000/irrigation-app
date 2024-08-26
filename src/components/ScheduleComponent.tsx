@@ -31,7 +31,7 @@ const ScheduleComponent = () => {
         <li>Progess</li>
       </ul>
 
-      <ScrollArea className="w-full h-[15rem] whitespace-nowrap rounded-md py-2">
+      <ScrollArea className="w-[99%] h-[15rem] whitespace-nowrap rounded-md py-2">
         <IrrigationTimeSlotComponent
           date="9 Nov"
           time="13:00"
