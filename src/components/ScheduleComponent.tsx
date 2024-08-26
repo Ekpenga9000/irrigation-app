@@ -21,7 +21,7 @@ const ScheduleComponent = () => {
         <li className="font-semibold">Irrigation Schedules</li>
       </ul>
 
-      <ul className="grid grid-cols-7 text-xs font-semibold text-gray-600 py-2 border-b">
+      <ul className="hidden lg:grid grid-cols-7 text-xs font-semibold text-gray-600 py-2 border-b">
         <li>Start day</li>
         <li>Start time</li>
         <li>End rule</li>

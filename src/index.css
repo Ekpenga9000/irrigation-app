@@ -81,6 +81,10 @@
   @apply border-2 py-2 px-4 rounded-md cursor-pointer; 
 }
 
+.irrigation-title{
+  @apply block lg:hidden mb-2;
+}
+
 .pill{
   @apply text-teal-900 bg-teal-200 p-1 px-2 rounded-[1rem];
 }

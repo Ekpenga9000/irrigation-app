@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { dateExtractor, filterDayOut } from "@/lib/utils";
 import WeatherInfo from "./WeatherInfo";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { IoLocationOutline } from "react-icons/io5";
 
 const API_KEY = "064e46ef54fe58c854a42b2615975636";
 const WeatherForest = () => {
@@ -34,6 +35,11 @@ const WeatherForest = () => {
         </li>
         <li className="font-semibold">Weather Forecast</li>
       </ul>
+
+      <ul className="my-4 font-semibold flex items-center justify-center md:justify-start">
+        <li><IoLocationOutline /></li>
+        <li>Calgary</li>
+      </ul>
       <ul className="hidden md:grid grid-cols-5 text-xs font-semibold text-gray-600 border-b py-2">
         <li>Day</li>
         <li>Weather</li>
@@ -41,7 +47,7 @@ const WeatherForest = () => {
         <li>Humidity</li>
         <li>Wind speed</li>
       </ul>
-      <ScrollArea className="h-[250px]">
+      <ScrollArea className="h-[240px]">
         {weather.map(({ day, info }: any) => (
           <WeatherInfo
             key={day}

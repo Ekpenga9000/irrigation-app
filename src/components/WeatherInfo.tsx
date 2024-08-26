@@ -31,7 +31,7 @@ const WeatherInfo = (props: IWeatherInfoProp) => {
       </ul>
 
       <div className="p-4 border-b md:hidden">
-        <p className="flex items-center gap-2">
+        <p className="flex items-center justify-center gap-2 mb-4">
           <IoCalendarClearOutline /> {day}
         </p>
         <ul className="flex flex-col items-center">
