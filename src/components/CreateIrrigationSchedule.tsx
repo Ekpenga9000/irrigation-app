@@ -7,13 +7,6 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-// import {
-//   Select,
-//   SelectContent,
-//   SelectItem,
-//   SelectTrigger,
-//   SelectValue,
-// } from "@/components/ui/select";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const CreateIrrigationSchedule = () => {
@@ -42,7 +35,7 @@ const CreateIrrigationSchedule = () => {
       <DialogHeader>
         <DialogTitle>Create irrigation Schedule</DialogTitle>
       </DialogHeader>
-      <ScrollArea className="h-[99%] w-full px-2 py-4">
+      <ScrollArea className="h-[70vh] w-full px-2 py-4">
         <div className="grid gap-4 py-4">
           <div className="">
             <Label htmlFor="name" className="">
@@ -140,7 +133,7 @@ const CreateIrrigationSchedule = () => {
                     key={day}
                     className={`cube ${
                       weeklyScheduledDay.includes(day)
-                        ? "bg-orange-400 shadow-sm"
+                        ? "bg-teal-400 shadow-sm"
                         : ""
                     }`}
                     onClick={() => handleWeeklyScheduledDay(day)}>
@@ -152,7 +145,7 @@ const CreateIrrigationSchedule = () => {
           )}
         </div>
         <DialogFooter>
-          <button className="bg-orange-400 py-2 px-4 rounded-md">Create</button>
+          <button className="bg-teal-500 py-2 px-4 rounded-md">Create</button>
         </DialogFooter>
       </ScrollArea>
     </>

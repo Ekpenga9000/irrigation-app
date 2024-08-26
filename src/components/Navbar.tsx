@@ -3,6 +3,14 @@ import { PiPlantBold } from "react-icons/pi";
 import { RxDashboard, RxHamburgerMenu } from "react-icons/rx";
 import { LuLogIn } from "react-icons/lu";
 import { TbLogout2 } from "react-icons/tb";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const Navbar = () => {
   return (
@@ -47,7 +55,71 @@ const Navbar = () => {
         </ul>
 
         <div className="block md:hidden">
-          <RxHamburgerMenu />
+          <Sheet>
+            <SheetTrigger>
+              <RxHamburgerMenu />
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                <ul className="flex flex-col items-center gap-6">
+                  <li>
+                    <Link
+                      to="/dashboard"
+                      className="font-semibold text-lg flex items-center gap-1">
+                      <span>
+                        <RxDashboard />
+                      </span>
+                      Dashboard
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/login"
+                      className="font-semibold text-lg flex items-center gap-1">
+                      <LuLogIn />
+                      Login
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/"
+                      className="font-semibold text-lg flex items-center gap-1">
+                      <TbLogout2 />
+                      Logout
+                    </Link>
+                  </li>
+                </ul>
+                <ul className="hidden md:flex items-center gap-6">
+                  <li>
+                    <Link
+                      to="/dashboard"
+                      className="font-semibold text-lg flex items-center gap-1">
+                      <span>
+                        <RxDashboard />
+                      </span>
+                      Dashboard
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/login"
+                      className="font-semibold text-lg flex items-center gap-1">
+                      <LuLogIn />
+                      Login
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/"
+                      className="font-semibold text-lg flex items-center gap-1">
+                      <TbLogout2 />
+                      Logout
+                    </Link>
+                  </li>
+                </ul>
+              </SheetHeader>
+            </SheetContent>
+          </Sheet>
         </div>
       </nav>
     </header>

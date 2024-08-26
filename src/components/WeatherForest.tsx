@@ -47,7 +47,7 @@ const WeatherForest = () => {
         <li>Humidity</li>
         <li>Wind speed</li>
       </ul>
-      <ScrollArea className="h-[240px]">
+      <ScrollArea className="h-[220px]">
         {weather.map(({ day, info }: any) => (
           <WeatherInfo
             key={day}
