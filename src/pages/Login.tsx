@@ -17,7 +17,7 @@ const Login = () => {
   });
 
   if (isAuthenticated && user) {
-    return navigate("/");
+    navigate("/");
   }
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
