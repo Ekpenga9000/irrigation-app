@@ -1,18 +1,23 @@
 import { Link } from "react-router-dom";
 import { PiPlantBold } from "react-icons/pi";
 import { RxDashboard, RxHamburgerMenu } from "react-icons/rx";
-import { LuLogIn } from "react-icons/lu";
 import { TbLogout2 } from "react-icons/tb";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { FaRegCircleUser } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/reduxState/store";
+import { logout } from "../reduxState/authSlice/authSlice";
 
 const Navbar = () => {
+  const { isAuthenticated, user } = useSelector(
+    (state: RootState) => state.auth
+  );
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <header className="p-4">
       <nav className="flex items-center justify-between">
@@ -26,32 +31,42 @@ const Navbar = () => {
         </Link>
 
         <ul className="hidden md:flex items-center gap-6">
-          <li>
-            <Link
-              to="/dashboard"
-              className="font-semibold text-lg flex items-center gap-1">
-              <span>
-                <RxDashboard />
-              </span>
-              Dashboard
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/login"
-              className="font-semibold text-lg flex items-center gap-1">
-              <LuLogIn />
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/"
-              className="font-semibold text-lg flex items-center gap-1">
-              <TbLogout2 />
-              Logout
-            </Link>
-          </li>
+          {isAuthenticated && user ? (
+            <li>
+              <Link
+                to="/dashboard"
+                className="font-semibold text-lg flex items-center gap-1">
+                <span>
+                  <RxDashboard />
+                </span>
+                Dashboard
+              </Link>
+            </li>
+          ) : (
+            <li>
+              <Link
+                to="/login"
+                className="font-semibold text-lg flex items-center gap-1">
+                <FaRegCircleUser />
+                Login
+              </Link>
+            </li>
+          )}
+           {isAuthenticated && user && (
+            <li className="cursor-pointer">
+              <img src={user.imageLink} alt={user.fullname} className="h-[3rem] w-[3rem] object-cover rounded-full" />
+            </li>
+          )}
+          {isAuthenticated && user && (
+            <li>
+              <button
+                onClick={handleLogout}
+                className="font-semibold text-lg flex items-center gap-1">
+                <TbLogout2 />
+                Logout
+              </button>
+            </li>
+          )}
         </ul>
 
         <div className="block md:hidden">
@@ -60,8 +75,8 @@ const Navbar = () => {
               <RxHamburgerMenu />
             </SheetTrigger>
             <SheetContent>
-              <SheetHeader>
-                <ul className="flex flex-col items-center gap-6">
+              <ul className="flex flex-col md:hidden items-center gap-6">
+                {isAuthenticated && user ? (
                   <li>
                     <Link
                       to="/dashboard"
@@ -72,52 +87,27 @@ const Navbar = () => {
                       Dashboard
                     </Link>
                   </li>
+                ) : (
                   <li>
                     <Link
                       to="/login"
                       className="font-semibold text-lg flex items-center gap-1">
-                      <LuLogIn />
+                      <FaRegCircleUser />
                       Login
                     </Link>
                   </li>
+                )}
+                {isAuthenticated && user && (
                   <li>
-                    <Link
-                      to="/"
+                    <button
+                      onClick={handleLogout}
                       className="font-semibold text-lg flex items-center gap-1">
                       <TbLogout2 />
                       Logout
-                    </Link>
+                    </button>
                   </li>
-                </ul>
-                <ul className="hidden md:flex items-center gap-6">
-                  <li>
-                    <Link
-                      to="/dashboard"
-                      className="font-semibold text-lg flex items-center gap-1">
-                      <span>
-                        <RxDashboard />
-                      </span>
-                      Dashboard
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/login"
-                      className="font-semibold text-lg flex items-center gap-1">
-                      <LuLogIn />
-                      Login
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/"
-                      className="font-semibold text-lg flex items-center gap-1">
-                      <TbLogout2 />
-                      Logout
-                    </Link>
-                  </li>
-                </ul>
-              </SheetHeader>
+                )}
+              </ul>
             </SheetContent>
           </Sheet>
         </div>

@@ -1,32 +1,69 @@
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { loginSuccess } from "@/reduxState/authSlice/authSlice";
+import { fetchUser } from "../api/mockApi";
+import { useNavigate } from "react-router-dom";
+import { RootState } from "@/reduxState/store";
 
 const Login = () => {
+  const { isAuthenticated, user } = useSelector(
+    (state: RootState) => state.auth
+  );
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
+
+  if (isAuthenticated && user) {
+    return navigate("/");
+  }
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    if (form.email.trim() === "" || form.password.trim() === "") {
+
+    const { email, password } = form;
+
+    if (email.trim() === "" || password.trim() === "") {
       toast.error("Please fill in all fields");
       setLoading(false);
       return;
     }
-    toast.success("Logged in Successfully!");
-    setForm({
-      email: "",
-      password: "",
-    });
-    setLoading(false);
+
+    try {
+      const user = await fetchUser(email, password);
+      if (user) {
+        dispatch(
+          loginSuccess({
+            id: user.id,
+            fullname: user.fullname,
+            imageLink: user.imageLink,
+          })
+        );
+        toast.success("Logged in Successfully!");
+        setForm({
+          email: "",
+          password: "",
+        });
+        navigate("/dashboard");
+      } else {
+        toast.error("Invalid email or password");
+      }
+    } catch (error) {
+      toast.error("An error occured, please try again.");
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
