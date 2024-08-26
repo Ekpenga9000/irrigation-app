@@ -1,12 +1,21 @@
 import { Link } from "react-router-dom";
 import { PiPlantBold } from "react-icons/pi";
-import { RxDashboard, RxHamburgerMenu } from "react-icons/rx";
+import { RxHamburgerMenu } from "react-icons/rx";
 import { TbLogout2 } from "react-icons/tb";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/reduxState/store";
 import { logout } from "../reduxState/authSlice/authSlice";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { MdOutlineDashboardCustomize } from "react-icons/md";
 
 const Navbar = () => {
   const { isAuthenticated, user } = useSelector(
@@ -32,15 +41,45 @@ const Navbar = () => {
 
         <ul className="hidden md:flex items-center gap-6">
           {isAuthenticated && user ? (
-            <li>
-              <Link
-                to="/dashboard"
-                className="font-semibold text-lg flex items-center gap-1">
-                <span>
-                  <RxDashboard />
-                </span>
-                Dashboard
-              </Link>
+            <li className="cursor-pointer w-[5rem]">
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <img
+                    src={user.imageLink}
+                    alt={user.fullname}
+                    className="h-[3rem] w-[3rem] object-cover rounded-full"
+                  />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>
+                    <div className="flex items-center gap-2">
+                      <FaRegCircleUser />
+                      {user.fullname}
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    {" "}
+                    <Link
+                      to="/dashboard"
+                      className="font-semibold flex items-center gap-1">
+                      <span>
+                        <MdOutlineDashboardCustomize />
+                      </span>
+                      Dashboard
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <button
+                      onClick={handleLogout}
+                      className="font-semibold flex items-center gap-1">
+                      <TbLogout2 />
+                      Logout
+                    </button>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </li>
           ) : (
             <li>
@@ -52,21 +91,6 @@ const Navbar = () => {
               </Link>
             </li>
           )}
-           {isAuthenticated && user && (
-            <li className="cursor-pointer">
-              <img src={user.imageLink} alt={user.fullname} className="h-[3rem] w-[3rem] object-cover rounded-full" />
-            </li>
-          )}
-          {isAuthenticated && user && (
-            <li>
-              <button
-                onClick={handleLogout}
-                className="font-semibold text-lg flex items-center gap-1">
-                <TbLogout2 />
-                Logout
-              </button>
-            </li>
-          )}
         </ul>
 
         <div className="block md:hidden">
@@ -75,14 +99,24 @@ const Navbar = () => {
               <RxHamburgerMenu />
             </SheetTrigger>
             <SheetContent>
-              <ul className="flex flex-col md:hidden items-center gap-6">
+              <ul className="md:hidden gap-6">
+                {isAuthenticated && user && (
+                  <li className="flex items-center gap-2 mb-4 border-b pb-2">
+                    <img
+                      src={user.imageLink}
+                      alt={user.fullname}
+                      className="h-[2.5rem] w-[2.5rem] object-cover rounded-full"
+                    />
+                    <span className="font-semibold text-lg">{user.fullname}</span>
+                  </li>
+                )}
                 {isAuthenticated && user ? (
-                  <li>
+                  <li className="mb-4">
                     <Link
                       to="/dashboard"
-                      className="font-semibold text-lg flex items-center gap-1">
+                      className="font-semibold flex items-center gap-1">
                       <span>
-                        <RxDashboard />
+                        <MdOutlineDashboardCustomize />
                       </span>
                       Dashboard
                     </Link>
@@ -91,7 +125,7 @@ const Navbar = () => {
                   <li>
                     <Link
                       to="/login"
-                      className="font-semibold text-lg flex items-center gap-1">
+                      className="font-semibold flex items-center gap-1">
                       <FaRegCircleUser />
                       Login
                     </Link>
@@ -101,7 +135,7 @@ const Navbar = () => {
                   <li>
                     <button
                       onClick={handleLogout}
-                      className="font-semibold text-lg flex items-center gap-1">
+                      className="font-semibold flex items-center gap-1">
                       <TbLogout2 />
                       Logout
                     </button>

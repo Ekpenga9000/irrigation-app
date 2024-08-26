@@ -6,27 +6,6 @@
       "imageLink": "../images/john.webp",
       "email": "johndoe@example.com",
       "password": "password123"
-    },
-    {
-      "id": "e1b2e4f8-5f8e-4e63-98af-7e90d2937e9e",
-      "fullname": "Jane Smith",
-      "imageLink": "https://example.com/images/janesmith.jpg",
-      "email": "janesmith@example.com",
-      "password": "securepassword"
-    },
-    {
-      "id": "c3f2f9d6-7197-4e67-8e69-bd8fb2d2d1f3",
-      "fullname": "Alice Johnson",
-      "imageLink": "https://example.com/images/alicejohnson.jpg",
-      "email": "alicejohnson@example.com",
-      "password": "alicepassword"
-    },
-    {
-      "id": "d6a7d4f9-2e98-49bb-bb24-5f87c2e6efcb",
-      "fullname": "Bob Brown",
-      "imageLink": "https://example.com/images/bobbrown.jpg",
-      "email": "bobbrown@example.com",
-      "password": "bobbrownpass"
     }
   ]
 }

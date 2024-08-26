@@ -57,7 +57,7 @@ export const dateExtractor = (date: Date) => {
   return `${dates}`;
 };
 
-export const getTime = (time: string) => {
+export const getTime = (time: number) => {
   const date = new Date(time);
   const hours = date.getHours();
   const minutes = date.getMinutes();
@@ -76,7 +76,6 @@ const dateString = (date: string) => {
   return `${year}-${month}-${day}`;
 };
 
-// Get the day and not the times of the day
 export const filterDayOut = (list: any[]) => {
   let tracker: any[] = [];
   let result: any[] = [];

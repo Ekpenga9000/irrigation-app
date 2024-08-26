@@ -1,6 +1,7 @@
 import React from "react";
 import DashboardLineChart from "./DashboardLineChart";
 import DashboardGaugeChart from "./DashboardGaugeChart";
+import { getTime } from "@/lib/utils";
 
 interface IDashboardCard1Props {
   Icon: React.ElementType;
@@ -10,6 +11,7 @@ interface IDashboardCard1Props {
   chart: 1 | 2;
 }
 
+const date = new Date(); 
 const DashboardCard1 = ({
   Icon,
   title,
@@ -28,7 +30,7 @@ const DashboardCard1 = ({
       <div className={`grid grid-cols-2 items-center`}>
         <ul>
           <li className="text-4xl text-teal-700">{data}</li>
-          {time && <li>at {time}</li>}
+          {time && <li>at {getTime(date.getTime())}</li>}
         </ul>
         <div>
           {chart === 1 && <DashboardLineChart />}
