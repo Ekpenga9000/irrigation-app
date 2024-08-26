@@ -1,8 +1,6 @@
 import React from "react";
-import { Progress } from "@/components/ui/progress";
 import DashboardLineChart from "./DashboardLineChart";
-
-
+import DashboardGaugeChart from "./DashboardGaugeChart";
 
 interface IDashboardCard1Props {
   Icon: React.ElementType;
@@ -21,7 +19,7 @@ const DashboardCard1 = ({
 }: IDashboardCard1Props) => {
   return (
     <div className="card">
-      <div className={`flex items-center gap-2 ${chart === 2 ? "mb-4" : ""}`}>
+      <div className={`flex items-center gap-2`}>
         <div className="text-orange-400 bg-gray-100 p-2 rounded-full">
           <Icon />
         </div>
@@ -33,13 +31,9 @@ const DashboardCard1 = ({
           {time && <li>at {time}</li>}
         </ul>
         <div>
-          {chart === 1 && (
-            <DashboardLineChart/>
-          )}
+          {chart === 1 && <DashboardLineChart />}
 
-          {chart === 2 && (
-               <Progress value={35} className="w-[100%] fill-orange-400" />
-          )}
+          {chart === 2 && <DashboardGaugeChart />}
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ const IrrigationTimeSlotComponent = (
     {date, time, rule, duration, volume, status, progress}: IIrrigationTimeSlotComponentProps
 ) => {
   return (
-    <ul className="grid grid-cols-7 text-xs font-semibold items-center text-gray-600 py-2 border-b">
+    <ul className="grid grid-cols-7 text-xs font-semibold items-center text-gray-600 py-3 border-b">
       <li className="text-gray-600">{date}</li>
       <li>
         <span className="pill">{time}</span>

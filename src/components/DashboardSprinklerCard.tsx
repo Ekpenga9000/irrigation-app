@@ -1,13 +1,16 @@
 import { TbFountain } from "react-icons/tb";
 
-interface IDashboardSprinklerCardProps{
-    active:number; 
-    inactive:number; 
+interface IDashboardSprinklerCardProps {
+  active: number;
+  inactive: number;
 }
-const DashboardSprinklerCard = ({active, inactive}: IDashboardSprinklerCardProps) => {
+const DashboardSprinklerCard = ({
+  active,
+  inactive,
+}: IDashboardSprinklerCardProps) => {
   return (
     <div className="card">
-      <ul className="flex items-center gap-2">
+      <ul className="flex items-center gap-2 mb-4">
         <li className="text-orange-400 bg-gray-100 p-2 rounded-full">
           <TbFountain />
         </li>
@@ -15,18 +18,18 @@ const DashboardSprinklerCard = ({active, inactive}: IDashboardSprinklerCardProps
       </ul>
       <div className="flex items-center justify-between">
         <ul>
-          <li>
-            <p className="text-teal-700 text-2xl">{`${active}`}</p>
-            <p className="text-sm">Active Sprinklers</p>
+          <li className="flex items-center gap-2">
+            <p className="text-sm font-semibold">Active Sprinklers:</p>
+            <p className="text-teal-700 text-lg">{`${active}`}</p>
           </li>
-          <li>
-            <p className="text-gray-500 text-2xl">{`${inactive}`}</p>
-            <p className="text-sm">Inactive Sprinklers</p>
+          <li className="flex items-center gap-2">
+            <p className="text-sm font-semibold">Inactive Sprinklers:</p>
+            <p className="text-gray-500 text-lg">{`${inactive}`}</p>
           </li>
         </ul>
-        <ul>
+        <ul className="flex flex-col items-center">
           <li className="text-4xl text-teal-700">{`${active + inactive}`}</li>
-          <li>Total Sprinklers</li>
+          <li className="text-sm font-semibold">Total Sprinklers</li>
         </ul>
       </div>
     </div>
