@@ -29,9 +29,9 @@ const Dashboard = () => {
 
     if (isIrrigationOn) {
       interval = setInterval(() => {
-        dispatch(updateWaterLevel());
-        dispatch(updateWaterConsumption(waterConsumption + 0.1));
-      }, 3000);
+        dispatch(updateWaterLevel(Number((waterLevel - 0.01).toFixed(2))));
+        dispatch(updateWaterConsumption(waterConsumption + 1));
+      }, 5000);
     }
 
     return () => {

@@ -22,8 +22,8 @@ const irrigationSlice = createSlice({
     turnOffIrrigation(state) {
       state.isIrrigationOn = false;
     },
-    updateWaterLevel(state) {
-      state.waterLevel =- 0.01;
+    updateWaterLevel(state, action: PayloadAction<number>) {
+      state.waterLevel = action.payload;
     },
     updateWaterConsumption(state, action: PayloadAction<number>) {
       state.waterConsumption = action.payload;
