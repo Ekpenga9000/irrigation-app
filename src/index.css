@@ -65,7 +65,7 @@
   }
 }
 
-.card{
+.card {
   @apply border h-full py-2 px-4 shadow-md rounded-md;
 }
 
@@ -73,22 +73,23 @@
   @apply p-4 md:p-12 lg:p-24;
 }
 
-.irrigation-input{
-  @apply w-full p-2 border rounded-md; 
+.irrigation-input {
+  @apply w-full p-2 border rounded-md;
 }
 
-.cube{
-  @apply border-2 py-2 px-4 rounded-md cursor-pointer; 
+.cube {
+  @apply border-2 py-2 px-4 rounded-md cursor-pointer;
 }
 
-.irrigation-title{
+.irrigation-title {
   @apply block lg:hidden mb-2;
 }
 
-.pill{
+.pill {
   @apply text-teal-900 bg-teal-200 p-1 px-2 rounded-[1rem];
 }
 
-.pill--inactive{
+.pill--inactive {
   @apply text-zinc-900 bg-zinc-200 p-1 px-2 rounded-[1rem];
 }
+

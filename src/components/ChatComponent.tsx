@@ -4,9 +4,10 @@ import { IoClose } from "react-icons/io5";
 import { FiSend } from "react-icons/fi";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { aiResponses } from "../data/aiResponses";
+import ChatBubble from "./ChatBubble";
 
 interface Chat {
-  sender: "Human" | "Ai";
+  sender: "Human" | "AI";
   message: string;
 }
 
@@ -14,17 +15,22 @@ const ChatComponent = () => {
   const [chatOpen, setChatOpen] = useState(false);
   const [chatHistory, setChatHistory] = useState<Chat[]>([]);
   const [reply, setReply] = useState("");
+  const [isTyping, setIsTyping] = useState(true);
 
   const startConversation = () => {
     setChatOpen(true);
+    setIsTyping(true);
     if (!chatHistory.length) {
-      const newChat = {
+      const newChat:Chat = {
         sender: "AI",
         message: "Hello, how can I assist you today?",
       };
       setTimeout(() => {
         setChatHistory([...chatHistory, newChat]);
+        setIsTyping(false);
       }, 1000);
+    }else{
+        setIsTyping(false);
     }
   };
 
@@ -48,11 +54,17 @@ const ChatComponent = () => {
     if (!reply.trim()) return;
     setChatHistory([...chatHistory, { sender: "Human", message: reply }]);
     setReply("");
+    setIsTyping(true);
     const message =
-      getRandomMessage(aiResponses) ??
+      getRandomMessage() ??
       "Looks like I've run out of things to say—I'm all out of chat fuel! Guess it's time for a reboot or a cup of coffee! ☕😄";
     setTimeout(() => {
-      setChatHistory([...chatHistory, { sender: "Human", message: reply }, { sender: "AI", message }]);
+      setChatHistory([
+        ...chatHistory,
+        { sender: "Human", message: reply },
+        { sender: "AI", message },
+      ]);
+      setIsTyping(false);
     }, 1500);
   };
 
@@ -61,11 +73,12 @@ const ChatComponent = () => {
       {chatOpen && (
         <div className="bg-gray-100 h-[30rem] w-full md:w-[30rem] shadow-md">
           <ul className="flex items-center justify-between bg-teal-600 text-white p-4">
-            <li className="font-semibold flex items-center gap-1">
+            <li className="flex items-center gap-1">
               <span className="text-lg">
                 <BiSolidChat />
               </span>{" "}
-              AquaSense Ai
+              <span className="font-semibold">AquaSense Ai</span>
+              {isTyping && <span className="inline-block ml-3 text-sm">Typing...</span>}
             </li>
             <li
               className="cursor-pointer text-lg"
@@ -74,10 +87,8 @@ const ChatComponent = () => {
             </li>
           </ul>
           <ScrollArea className="h-[23rem] w-full p-4">
-            {chatHistory.map((chat, index) => (
-              <p key={index} className="flex justify-between mb-2">
-                {chat.message}
-              </p>
+            {chatHistory.map(({ sender, message }, index) => (
+              <ChatBubble key={index} sender={sender} message={message} />
             ))}
           </ScrollArea>
 

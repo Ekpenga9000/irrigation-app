@@ -8,9 +8,22 @@ import WeatherForest from "@/components/WeatherForest";
 import ChatComponent from "@/components/ChatComponent";
 import { BsWater } from "react-icons/bs";
 import { IoWaterOutline } from "react-icons/io5";
-
+import { useSelector } from "react-redux";
+import { RootState } from "@/reduxState/store";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+
+  if (!isAuthenticated) {
+    return (
+      <div className="h-[80vh] flex justify-center items-center">
+        <Link to="/login" className="text-4xl border-4 p-4 rounded-md shadow-md">
+          Please click here to login
+        </Link>
+      </div>
+    );
+  }
   return (
     <section className="p-4 relative">
       <DashboardHead />
@@ -52,7 +65,7 @@ const Dashboard = () => {
           </li>
         </ul>
       </div>
-      <ChatComponent/>
+      <ChatComponent />
     </section>
   );
 };
