@@ -3,6 +3,7 @@ import { BiSolidChat } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
 import { FiSend } from "react-icons/fi";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { aiResponses } from "../data/aiResponses";
 
 interface Chat {
   sender: "Human" | "Ai";
@@ -12,10 +13,10 @@ interface Chat {
 const ChatComponent = () => {
   const [chatOpen, setChatOpen] = useState(false);
   const [chatHistory, setChatHistory] = useState<Chat[]>([]);
+  const [reply, setReply] = useState("");
 
   const startConversation = () => {
     setChatOpen(true);
-
     if (!chatHistory.length) {
       const newChat = {
         sender: "AI",
@@ -25,6 +26,34 @@ const ChatComponent = () => {
         setChatHistory([...chatHistory, newChat]);
       }, 1000);
     }
+  };
+
+  const getRandomMessage = () => {
+    const shuffledArray = [...aiResponses];
+
+    // Shuffle the array using Fisher-Yates algorithm
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledArray[i], shuffledArray[j]] = [
+        shuffledArray[j],
+        shuffledArray[i],
+      ];
+    }
+
+    const message = shuffledArray.pop();
+    return message;
+  };
+
+  const replyMessage = () => {
+    if (!reply.trim()) return;
+    setChatHistory([...chatHistory, { sender: "Human", message: reply }]);
+    setReply("");
+    const message =
+      getRandomMessage(aiResponses) ??
+      "Looks like I've run out of things to say—I'm all out of chat fuel! Guess it's time for a reboot or a cup of coffee! ☕😄";
+    setTimeout(() => {
+      setChatHistory([...chatHistory, { sender: "Human", message: reply }, { sender: "AI", message }]);
+    }, 1500);
   };
 
   return (
@@ -58,8 +87,10 @@ const ChatComponent = () => {
                 type="text"
                 placeholder="Write a message"
                 className="w-full bg-white px-2 outline-none"
+                value={reply}
+                onChange={(e) => setReply(e.target.value)}
               />
-              <button className="pr-2 text-gray-600">
+              <button className="pr-2 text-gray-600" onClick={replyMessage}>
                 <FiSend />
               </button>
             </div>
