@@ -1,13 +1,11 @@
 import { TbFountain } from "react-icons/tb";
+import { useSelector } from "react-redux";
+import { RootState } from "@/reduxState/store";
 
-interface IDashboardSprinklerCardProps {
-  active: number;
-  inactive: number;
-}
-const DashboardSprinklerCard = ({
-  active,
-  inactive,
-}: IDashboardSprinklerCardProps) => {
+const DashboardSprinklerCard = () => {
+  const {isIrrigationOn} = useSelector(
+    (state: RootState) => state.irrigation
+  );
   return (
     <div className="card">
       <ul className="flex items-center gap-2 mb-4">
@@ -20,15 +18,15 @@ const DashboardSprinklerCard = ({
         <ul>
           <li className="flex items-center gap-2">
             <p className="text-sm font-semibold">Active Sprinklers:</p>
-            <p className="text-teal-700 text-lg">{`${active}`}</p>
+            <p className="text-teal-700 text-lg">{isIrrigationOn ? `${190}` : "0"}</p>
           </li>
           <li className="flex items-center gap-2">
             <p className="text-sm font-semibold">Inactive Sprinklers:</p>
-            <p className="text-gray-500 text-lg">{`${inactive}`}</p>
+            <p className="text-gray-500 text-lg">{!isIrrigationOn ? `${190}` : "0"}</p>
           </li>
         </ul>
         <ul className="flex flex-col items-center">
-          <li className="text-4xl text-teal-700">{`${active + inactive}`}</li>
+          <li className="text-4xl text-teal-700">{`${190}`}</li>
           <li className="text-sm font-semibold">Total Sprinklers</li>
         </ul>
       </div>

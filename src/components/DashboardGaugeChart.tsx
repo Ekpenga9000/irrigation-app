@@ -4,11 +4,14 @@ import {
   GaugeReferenceArc,
   useGaugeState,
 } from "@mui/x-charts/Gauge";
+import { useSelector } from "react-redux";
+import { RootState } from "@/reduxState/store";
+
+
 
 const DashboardGaugeChartPointer = () => {
   const { valueAngle, outerRadius, cx, cy } = useGaugeState();
   if (valueAngle === null) {
-    // No value to display
     return null;
   }
 
@@ -31,13 +34,14 @@ const DashboardGaugeChartPointer = () => {
 };
 
 const DashboardGaugeChart = () => {
+  const { waterLevel } = useSelector((state: RootState) => state.irrigation);
   return (
     <GaugeContainer
       width={150}
       height={80}
       startAngle={-110}
       endAngle={110}
-      value={35}>
+      value={waterLevel}>
       <GaugeReferenceArc />
       <GaugeValueArc />
       <DashboardGaugeChartPointer />

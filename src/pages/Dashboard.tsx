@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import DashboardCard1 from "@/components/DashboardCard1";
 import DashboardHead from "@/components/DashboardHead";
 import DashboardSprinklerCard from "@/components/DashboardSprinklerCard";
@@ -8,17 +9,43 @@ import WeatherForest from "@/components/WeatherForest";
 import ChatComponent from "@/components/ChatComponent";
 import { BsWater } from "react-icons/bs";
 import { IoWaterOutline } from "react-icons/io5";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/reduxState/store";
 import { Link } from "react-router-dom";
+import {
+  updateWaterLevel,
+  updateWaterConsumption,
+} from "../reduxState/irrigationSlice/irrigationSlice";
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+  const { isIrrigationOn, waterConsumption, waterLevel } = useSelector(
+    (state: RootState) => state.irrigation
+  );
 
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    if (isIrrigationOn) {
+      interval = setInterval(() => {
+        dispatch(updateWaterLevel());
+        dispatch(updateWaterConsumption(waterConsumption + 0.1));
+      }, 3000);
+    }
+
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [waterConsumption, waterLevel]);
   if (!isAuthenticated) {
     return (
       <div className="h-[80vh] flex justify-center items-center">
-        <Link to="/login" className="text-4xl border-4 p-4 rounded-md shadow-md">
+        <Link
+          to="/login"
+          className="text-4xl border-4 p-4 rounded-md shadow-md">
           Please click here to login
         </Link>
       </div>
@@ -32,8 +59,8 @@ const Dashboard = () => {
           <li>
             <DashboardCard1
               title={"Total water consumption"}
-              data="400.5L"
-              time="10:15am"
+              data={`${waterConsumption}L`}
+              time={true}
               Icon={BsWater}
               chart={1}
             />
@@ -41,13 +68,14 @@ const Dashboard = () => {
           <li>
             <DashboardCard1
               title={"Tank Levels"}
-              data="35%"
+              data={`${waterLevel}%`}
               Icon={IoWaterOutline}
               chart={2}
+              time={false}
             />
           </li>
           <li>
-            <DashboardSprinklerCard active={120} inactive={70} />
+            <DashboardSprinklerCard />
           </li>
           <li>
             <ScheduleIrrigationCard />

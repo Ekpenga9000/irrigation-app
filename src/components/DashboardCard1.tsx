@@ -3,11 +3,12 @@ import DashboardLineChart from "./DashboardLineChart";
 import DashboardGaugeChart from "./DashboardGaugeChart";
 import { getTime } from "@/lib/utils";
 
+
 interface IDashboardCard1Props {
   Icon: React.ElementType;
   title: string;
   data: string;
-  time?: string;
+  time: boolean;
   chart: 1 | 2;
 }
 

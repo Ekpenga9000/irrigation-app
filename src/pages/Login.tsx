@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess } from "@/reduxState/authSlice/authSlice";
@@ -16,9 +16,12 @@ const Login = () => {
     password: "",
   });
 
-  if (isAuthenticated && user) {
-    navigate("/");
-  }
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      navigate("/dashboard");
+    }
+  }, []);
+
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
